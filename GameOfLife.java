@@ -45,7 +45,6 @@ public class GameOfLife {
     		
     		grid.performRound();
     		
-    		// for testing
     		if (verboseMode)
     			grid.printGrid();
     		

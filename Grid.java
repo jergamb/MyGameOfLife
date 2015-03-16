@@ -56,7 +56,6 @@ public class Grid {
 		
 	}
 	
-
 	/*
 	 * Returns the number of neighbors a populated space has
 	 */
@@ -65,13 +64,96 @@ public class Grid {
 		int neighbors = 0;
 		
 		if (row == 0 && col == 0) {
-			
+			char north = currentGrid[col][99];
+			char south = currentGrid[col][row+1];
+			char east = currentGrid[col+1][row];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (east == '*')
+				neighbors++;
+			return neighbors;
 		}
+		if (row == 0 && col == 99) {
+			char north = currentGrid[col][99];
+			char south = currentGrid[col][row+1];
+			char west = currentGrid[col-1][row];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (west == '*')
+				neighbors++;
+			return neighbors;
+		}
+		if (row == 99 && col == 0) {
+			char north = currentGrid[col][row-1];
+			char south = currentGrid[col][0];
+			char east = currentGrid[col+1][row];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (east == '*')
+				neighbors++;
+			return neighbors;
+		}
+		if (row == 99 && col == 99) {
+			char north = currentGrid[col][row-1];
+			char south = currentGrid[col][0];
+			char west = currentGrid[col-1][row];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (west == '*')
+				neighbors++;
+			return neighbors;
+		}
+		if (row > 0 && row < 99 && col == 0) {
+			char north = currentGrid[col][row-1];
+			char south = currentGrid[col][row+1];
+			char east = currentGrid[col+1][row];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (east == '*')
+				neighbors++;
+			return neighbors;
+		}
+		if (row > 0 && row < 99 && col == 99) {
+			char north = currentGrid[col][row-1];
+			char south = currentGrid[col][row+1];
+			char west = currentGrid[col-1][row];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (west == '*')
+				neighbors++;
+			return neighbors;
+		}
+		
+		// take care of any normal cases
+		char north = currentGrid[col][row-1];
+		char south = currentGrid[col][row+1];
+		char east = currentGrid[col+1][row];
+		char west = currentGrid[col-1][row];
+		if (north == '*')
+			neighbors++;
+		if (south == '*')
+			neighbors++;
+		if (east == '*')
+			neighbors++;
+		if (west == '*')
+			neighbors++;
 		
 		return neighbors;
 	}
 	
-
+	
 	/*
 	 * Print the currentGrid to the console
 	 */
