@@ -25,4 +25,16 @@ public class Grid {
 		}
 	}
 
+	/*
+	 * Print the currentGrid to the console
+	 */
+	public void printGrid() {
+		for (int i = 0; i < cols; i++) {
+			for (int j = 0; j < rows; j++) {
+				char c = currentGrid[i][j];
+				System.out.print(c);
+			}
+		}
+	}
+
 }
