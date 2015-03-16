@@ -24,13 +24,46 @@ public class GameOfLife {
     	numGenerations = Integer.parseInt(args[0]);
     	fileName = args[1];
     	
+    	char[][] tempTable = null;
     	
+    	tempTable = readFromFile(fileName);
     	
     	// initialize the grid
     	grid = new Grid();
     	
     	
-    	
-    	
+    		
     }
+
+
+	/*
+     * Reads from a file and updates tempTable
+     */
+	private static char[][] readFromFile(String file) {
+		int cols = 100;
+		int rows = 100;
+		char[][] temp = new char[cols][rows];
+		
+		try {
+			FileInputStream inputStream = new FileInputStream(file);
+			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+			String line;
+		
+			// keep track of row and go through each line of the file
+			int rowIndex = 0;
+			while((line = br.readLine()) != null) {
+				for (int i = 0; i < cols; i++) {
+					char c = line.charAt(i);
+					temp[i][rowIndex] = c;
+				}
+				// increment rowIndex for next row in temp
+				rowIndex++;
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return temp;
+	}
+
 }
