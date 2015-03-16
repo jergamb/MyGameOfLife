@@ -50,7 +50,6 @@ public class GameOfLife {
     		
     		currentRound++;
     	}
-    
     }
 
     /*
@@ -82,13 +81,6 @@ public class GameOfLife {
 		
 		return temp;
 	}
-
-
-
-
-
-
-
 
 }
 
