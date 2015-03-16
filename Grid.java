@@ -24,6 +24,53 @@ public class Grid {
 			}
 		}
 	}
+	
+	
+	/*
+	 * Perform the round based on these rules:
+	 * 	   For a space that is 'populated':
+	 * 			Each cell with one or no neighbors dies, as if by loneliness.
+	 * 			Each cell with four or more neighbors dies, as if by overpopulation.
+	 * 			Each cell with two or three neighbors survives.
+	 * 
+	 * 	   For a space that is 'empty' or 'unpopulated'
+	 * 			Each cell with three neighbors becomes populated
+	 */
+	public void performRound() {
+		
+		// iterate through the entire grid and check each space
+		for (int i = 0; i < cols; i++) {
+			for (int j = 0; j < rows; j++) {
+				
+				char c = currentGrid[i][j];
+				// check to see if space is populated or unpopulated
+				if (c == '*') {
+					
+				} 
+				else {
+					
+				}
+				
+			}
+		}
+		
+	}
+	
+
+	/*
+	 * Returns the number of neighbors a populated space has
+	 */
+	public int numberOfNeighbors(int col, int row) {
+		
+		int neighbors = 0;
+		
+		if (row == 0 && col == 0) {
+			
+		}
+		
+		return neighbors;
+	}
+	
 
 	/*
 	 * Print the currentGrid to the console
@@ -36,5 +83,16 @@ public class Grid {
 			}
 		}
 	}
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

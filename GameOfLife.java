@@ -1,3 +1,8 @@
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 
 public class GameOfLife {
 	
@@ -23,21 +28,33 @@ public class GameOfLife {
     	}
     	
     	numGenerations = Integer.parseInt(args[0]);
+    	System.out.println("numGenerations is :" + numGenerations);
     	fileName = args[1];
     	
+    	// create a readFromFile method to update/return char[][] and also have a try catch around every
+    	// then pass in the char[][] to the grid constructor
     	char[][] tempTable = null;
     	
     	tempTable = readFromFile(fileName);
     	
     	// initialize the grid
     	grid = new Grid(tempTable);
-    	
-    	
+    
+    	int currentRound = 0;
+    	while (currentRound != numGenerations) {
     		
+    		grid.performRound();
+    		
+    		// for testing
+    		if (verboseMode)
+    			grid.printGrid();
+    		
+    		currentRound++;
+    	}
+    
     }
 
-
-	/*
+    /*
      * Reads from a file and updates tempTable
      */
 	private static char[][] readFromFile(String file) {
@@ -67,4 +84,12 @@ public class GameOfLife {
 		return temp;
 	}
 
+
+
+
+
+
+
+
 }
+
