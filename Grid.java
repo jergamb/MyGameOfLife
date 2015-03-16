@@ -163,7 +163,9 @@ public class Grid {
 				char c = currentGrid[i][j];
 				System.out.print(c);
 			}
+			System.out.print("\n");
 		}
+		System.out.println();
 	}
 	
 	
