@@ -7,6 +7,7 @@ public class GameOfLife {
 	static int numGenerations = 0;
 	static String fileName = null;
 	
+	
     public static void main(String[] args) {
     	if (args.length < 2) {
     		System.err.println("Invalid number of arguments. Enter number-of-generations and input-file.");
