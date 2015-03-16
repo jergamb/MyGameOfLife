@@ -1,0 +1,71 @@
+commit 933a02c47d6add958ec3158a177892c8d8de07e7
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 17:40:48 2015 -0500
+
+    Checked diagonal neighbors and added asserts
+
+commit de4706cb13784ffd1ed00643fb5f3e66173183d1
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 17:12:31 2015 -0500
+
+    Fixed the printGrid method
+
+commit ed7e99512be7c4f8360fd1952426cb67c0758441
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 17:09:33 2015 -0500
+
+    Needed to fix readFromFile
+
+commit 8d2d974d1b2814fe95cd2192e3513c260face439
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 17:04:54 2015 -0500
+
+    added another table to test for edge cases
+
+commit 5fb2766a074ac3b5d88b247daeb3171d10b1f1a2
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 16:52:18 2015 -0500
+
+    Finished numberOfNeighbors method
+
+commit 67af8d2cc574000245820ec694ca702e439dca25
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 16:11:13 2015 -0500
+
+    Started working on rounds and rules
+
+commit f6cf376fef836e77f30b143805697ef246b8cc9c
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 15:41:31 2015 -0500
+
+    Added a table to test code.
+
+commit 111d33b6248e35944b5d6b44a1a1502b4a16bcae
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 15:36:22 2015 -0500
+
+    Added a printGrid method to print to console.
+
+commit 55e79cfdf3c1628adf5b4477ddc298813dc6f8b4
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 15:28:11 2015 -0500
+
+    Added the constructor for Grid class
+
+commit 13447d4ba672cd31edfe91d4a79817ad3d64575a
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 15:17:42 2015 -0500
+
+    Implemented readMeFile to initialize grid
+
+commit 065a34fbad792f1f795e384e27a140a971df0cd8
+Author: jergamb <ggambo_13@utexas.edu>
+Date:   Mon Mar 16 14:47:04 2015 -0500
+
+    Created Main file and class for the grid
+
+commit 98e400e602c258e1cdd4563abf806cce5eaaf82f
+Author: Gerardo Gamboa <Jerry@Gerardos-MacBook-Pro.local>
+Date:   Mon Mar 16 14:22:03 2015 -0500
+
+    First Commit
