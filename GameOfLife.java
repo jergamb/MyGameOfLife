@@ -29,7 +29,7 @@ public class GameOfLife {
     	tempTable = readFromFile(fileName);
     	
     	// initialize the grid
-    	grid = new Grid();
+    	grid = new Grid(tempTable);
     	
     	
     		
