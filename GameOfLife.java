@@ -28,28 +28,31 @@ public class GameOfLife {
     	}
     	
     	numGenerations = Integer.parseInt(args[0]);
-    	System.out.println("numGenerations is :" + numGenerations);
     	fileName = args[1];
     	
-    	// create a readFromFile method to update/return char[][] and also have a try catch around every
-    	// then pass in the char[][] to the grid constructor
     	char[][] tempTable = null;
     	
     	tempTable = readFromFile(fileName);
     	
+    	
     	// initialize the grid
     	grid = new Grid(tempTable);
-    
+    	
+    	assert grid != null;
+    	
     	int currentRound = 0;
-    	while (currentRound != numGenerations) {
-    		
+    	while (currentRound < numGenerations) {
     		grid.performRound();
     		
     		if (verboseMode)
     			grid.printGrid();
     		
+    		// keep track of the rounds by incrementing counter
     		currentRound++;
     	}
+    	
+    	// finally print out the last updated grid
+    	grid.printGrid();
     }
 
     /*
@@ -60,20 +63,22 @@ public class GameOfLife {
 		int rows = 100;
 		char[][] temp = new char[cols][rows];
 		
+		assert file != null;
+		
 		try {
 			FileInputStream inputStream = new FileInputStream(file);
 			BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 			String line;
 		
 			// keep track of row and go through each line of the file
-			int rowIndex = 0;
+			int colIndex = 0;
 			while((line = br.readLine()) != null) {
 				for (int i = 0; i < cols; i++) {
 					char c = line.charAt(i);
-					temp[i][rowIndex] = c;
+					temp[colIndex][i] = c;
 				}
 				// increment rowIndex for next row in temp
-				rowIndex++;
+				colIndex++;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -83,4 +88,3 @@ public class GameOfLife {
 	}
 
 }
-

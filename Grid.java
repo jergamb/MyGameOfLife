@@ -24,8 +24,7 @@ public class Grid {
 			}
 		}
 	}
-	
-	
+			
 	/*
 	 * Perform the round based on these rules:
 	 * 	   For a space that is 'populated':
@@ -43,104 +42,239 @@ public class Grid {
 			for (int j = 0; j < rows; j++) {
 				
 				char c = currentGrid[i][j];
+				int numNeighbors = numberOfNeighbors(i, j);
+				
 				// check to see if space is populated or unpopulated
 				if (c == '*') {
-					
+					if (numNeighbors == 0 || numNeighbors == 1) {
+						// cell dies
+						tempGrid[i][j] = '.';
+					}
+					else if (numNeighbors == 2 || numNeighbors == 3) {
+						// cell survives
+						tempGrid[i][j] = '*';
+					}
+					else if (numNeighbors >= 4) {
+						// cell dies
+						tempGrid[i][j] = '.';
+					}
 				} 
 				else {
-					
+					if (numNeighbors == 3) {
+						// cell is populated
+						tempGrid[i][j] = '*';
+					}
 				}
-				
 			}
 		}
 		
+		// now that update the currentGrid with the changes made on tempGrid
+		updateCurrentGrid();
 	}
 	
 	/*
+	 * Copies tempGrid's changes on to CurrentGrid
+	 */
+	private void updateCurrentGrid() {
+		for (int i = 0; i < cols; i++) {
+			for (int j = 0; j < rows; j++) {
+				currentGrid[i][j] = tempGrid[i][j];
+			}
+		}
+	}
+
+	/*
 	 * Returns the number of neighbors a populated space has
 	 */
-	public int numberOfNeighbors(int col, int row) {
-		
+	private int numberOfNeighbors(int col, int row) {
 		int neighbors = 0;
-		
-		if (row == 0 && col == 0) {
-			char north = currentGrid[col][99];
-			char south = currentGrid[col][row+1];
-			char east = currentGrid[col+1][row];
-			if (north == '*')
-				neighbors++;
-			if (south == '*')
-				neighbors++;
-			if (east == '*')
-				neighbors++;
-			return neighbors;
-		}
-		if (row == 0 && col == 99) {
-			char north = currentGrid[col][99];
-			char south = currentGrid[col][row+1];
-			char west = currentGrid[col-1][row];
-			if (north == '*')
-				neighbors++;
-			if (south == '*')
-				neighbors++;
-			if (west == '*')
-				neighbors++;
-			return neighbors;
-		}
-		if (row == 99 && col == 0) {
-			char north = currentGrid[col][row-1];
-			char south = currentGrid[col][0];
-			char east = currentGrid[col+1][row];
-			if (north == '*')
-				neighbors++;
-			if (south == '*')
-				neighbors++;
-			if (east == '*')
-				neighbors++;
-			return neighbors;
-		}
-		if (row == 99 && col == 99) {
-			char north = currentGrid[col][row-1];
-			char south = currentGrid[col][0];
-			char west = currentGrid[col-1][row];
-			if (north == '*')
-				neighbors++;
-			if (south == '*')
-				neighbors++;
-			if (west == '*')
-				neighbors++;
-			return neighbors;
-		}
+				
 		if (row > 0 && row < 99 && col == 0) {
+			assert neighbors == 0;
 			char north = currentGrid[col][row-1];
 			char south = currentGrid[col][row+1];
 			char east = currentGrid[col+1][row];
+			char NE = currentGrid[col+1][row-1];
+			char SE = currentGrid[col+1][row+1];
 			if (north == '*')
 				neighbors++;
 			if (south == '*')
 				neighbors++;
 			if (east == '*')
+				neighbors++;
+			if (NE == '*')
+				neighbors++;
+			if (SE == '*')
 				neighbors++;
 			return neighbors;
 		}
 		if (row > 0 && row < 99 && col == 99) {
+			assert neighbors == 0;
 			char north = currentGrid[col][row-1];
 			char south = currentGrid[col][row+1];
 			char west = currentGrid[col-1][row];
+			char NW = currentGrid[col-1][row-1];
+			char SW = currentGrid[col-1][row+1];
 			if (north == '*')
 				neighbors++;
 			if (south == '*')
 				neighbors++;
 			if (west == '*')
 				neighbors++;
+			if (NW == '*')
+				neighbors++;
+			if (SW == '*')
+				neighbors++;
 			return neighbors;
 		}
+		
+		if (row == 0 && col > 0 && col < 99) {
+			assert neighbors == 0;
+			char north = currentGrid[col][99];
+			char south = currentGrid[col][row+1];
+			char east = currentGrid[col+1][row];
+			char west = currentGrid[col-1][row];
+			char NW = currentGrid[col-1][99];
+			char NE = currentGrid[col+1][99];
+			char SW = currentGrid[col-1][row+1];
+			char SE = currentGrid[col+1][row+1];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (east == '*')
+				neighbors++;
+			if (west == '*')
+				neighbors++;
+			if (NW == '*')
+				neighbors++;
+			if (NE == '*')
+				neighbors++;
+			if (SW == '*')
+				neighbors++;
+			if (SE == '*')
+				neighbors++;
+			return neighbors;
+		}
+		if  (row == 99 && col > 0 && col < 99) {
+			assert neighbors == 0;
+			char north = currentGrid[col][row-1];
+			char south = currentGrid[col][0];
+			char east = currentGrid[col+1][row];
+			char west = currentGrid[col-1][row];
+			char NW = currentGrid[col-1][row-1];
+			char NE = currentGrid[col+1][row-1];
+			char SW = currentGrid[col-1][0];
+			char SE = currentGrid[col+1][0];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (east == '*')
+				neighbors++;
+			if (west == '*')
+				neighbors++;
+			if (NW == '*')
+				neighbors++;
+			if (NE == '*')
+				neighbors++;
+			if (SW == '*')
+				neighbors++;
+			if (SE == '*')
+				neighbors++;
+			return neighbors;
+		}
+		// edge case
+		if (row == 0 && col == 0) {
+			assert neighbors == 0;
+			char north = currentGrid[col][99];
+			char south = currentGrid[col][row+1];
+			char east = currentGrid[col+1][row];
+			char NE = currentGrid[col+1][99];
+		    char SE = currentGrid[col+1][row+1]; 
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (east == '*')
+				neighbors++;
+			if (NE == '*')
+				neighbors++;
+			if (SE == '*')
+				neighbors++;
+			return neighbors;
+		}
+		// edge case
+		if (row == 0 && col == 99) {
+			assert neighbors == 0;
+			char north = currentGrid[col][99];
+			char south = currentGrid[col][row+1];
+			char west = currentGrid[col-1][row];
+			char NW = currentGrid[col-1][99];
+			char SW = currentGrid[col-1][row+1];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (west == '*')
+				neighbors++;
+			if (NW == '*')
+				neighbors++;
+			if (SW == '*')
+				neighbors++;
+			return neighbors;
+		}
+		// edge case
+		if (row == 99 && col == 0) {
+			assert neighbors == 0;
+			char north = currentGrid[col][row-1];
+			char south = currentGrid[col][0];
+			char east = currentGrid[col+1][row];
+			char NE = currentGrid[col+1][row-1];
+			char SE = currentGrid[col+1][0];		
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (east == '*')
+				neighbors++;
+			if (NE == '*')
+				neighbors++;
+			if (SE == '*')
+				neighbors++;
+			return neighbors;
+		}
+		// edge case
+		if (row == 99 && col == 99) {
+			assert neighbors == 0;
+			char north = currentGrid[col][row-1];
+			char south = currentGrid[col][0];
+			char west = currentGrid[col-1][row];
+			char NW = currentGrid[col-1][row-1];
+			char SW = currentGrid[col-1][0];
+			if (north == '*')
+				neighbors++;
+			if (south == '*')
+				neighbors++;
+			if (west == '*')
+				neighbors++;
+			if (NW == '*')
+				neighbors++;
+			if (SW == '*')
+				neighbors++;
+			return neighbors;
+		}
+		assert neighbors == 0;
 		
 		// take care of any normal cases
 		char north = currentGrid[col][row-1];
 		char south = currentGrid[col][row+1];
 		char east = currentGrid[col+1][row];
 		char west = currentGrid[col-1][row];
+		char NW = currentGrid[col-1][row-1];
+		char NE = currentGrid[col+1][row-1];
+		char SW = currentGrid[col-1][row+1];
+		char SE = currentGrid[col+1][row+1];
 		if (north == '*')
 			neighbors++;
 		if (south == '*')
@@ -149,7 +283,14 @@ public class Grid {
 			neighbors++;
 		if (west == '*')
 			neighbors++;
-		
+		if (NW == '*')
+			neighbors++;
+		if (NE == '*')
+			neighbors++;
+		if (SW == '*')
+			neighbors++;
+		if (SE == '*')
+			neighbors++;
 		return neighbors;
 	}
 	
@@ -168,15 +309,5 @@ public class Grid {
 		System.out.println();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }
+ 
