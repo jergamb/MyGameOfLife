@@ -1,4 +1,4 @@
 I will be using this as my initial start for the timer. 
 I will also be making a commit log at the end to show all commits within the time length.
 
-Start time: 2:18 PM 	March 16, 2008
+Start time: 2:30 PM 	March 16, 2008
